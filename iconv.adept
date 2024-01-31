@@ -1,0 +1,10 @@
+alias iconv_t = ptr
+
+foreign libiconv_open (tocode *ubyte, fromcode *ubyte) iconv_t
+func alias iconv_open (*ubyte, *ubyte) => libiconv_open
+
+foreign libiconv (cd iconv_t,  inbuf **ubyte, inbytesleft *usize, outbuf **ubyte, outbytesleft *usize) usize
+func alias iconv (iconv_t, **ubyte, *usize, **ubyte, *usize) => libiconv
+
+foreign libiconv_close (cd iconv_t) int
+func alias iconv_close (iconv_t) => libiconv_close
